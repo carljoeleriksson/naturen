@@ -23,7 +23,7 @@ function Cart() {
 function renderCart() {
     return cart.map((product: any) => (
         /* console.log('cartProduct', product); */
-        <li>
+        <li key={product.id}>
             <div className="cart-small-thumb-container">
                 <img className="cart-small-thumb" src={product.image} alt={product.name} />
             </div>

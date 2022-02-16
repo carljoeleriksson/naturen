@@ -6,7 +6,8 @@
         "shortDesc": "Frusen såpbubbla",
         "price": 199,
         "image": "https://images.unsplash.com/photo-1484278786775-527ac0d0b608?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1961&q=80",
-        "quantity": 10
+        "stock": 10,
+        "qty": 0
     },
     {
         "id": 2,
@@ -15,7 +16,8 @@
         "shortDesc": "En näve mossa",
         "price": 349,
         "image": "https://images.unsplash.com/photo-1591931559191-3ba5ecc12410?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2344&q=80",
-        "quantity": 10
+        "stock": 10,
+        "qty": 0
     },
     {
         "id": 3,
@@ -24,7 +26,8 @@
         "shortDesc": "Massiv diabas",
         "price": 499,
         "image": "https://images.unsplash.com/photo-1525857597365-5f6dbff2e36e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80",
-        "quantity": 10
+        "stock": 10,
+        "qty": 0
     },
     {
         "id": 4,
@@ -33,7 +36,8 @@
         "shortDesc": "sirlig rauk-sand",
         "price": 295,
         "image": "https://images.unsplash.com/photo-1534171472159-edb6d1e0b63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80",
-        "quantity": 10
+        "stock": 10,
+        "qty": 0
     },
     {
         "id": 5,
@@ -42,7 +46,8 @@
         "shortDesc": "kodfria och kastanjebruna",
         "price": 199,
         "image": "https://images.unsplash.com/photo-1510189511704-57f96164f531?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2342&q=80",
-        "quantity": 10
+        "stock": 10,
+        "qty": 0
     },
     {
         "id": 6,
@@ -51,7 +56,8 @@
         "shortDesc": "skir och blåsbar",
         "price": 49,
         "image": "https://images.unsplash.com/photo-1499946981954-e7f4b234d7fa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80",
-        "quantity": 10
+        "stock": 10,
+        "qty": 0
     },
     {
         "id": 7,
@@ -60,7 +66,8 @@
         "shortDesc": "smakstarka och spänstiga",
         "price": 299,
         "image": "https://images.unsplash.com/photo-1519305124423-5ccccff55da9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2338&q=80",
-        "quantity": 10
+        "stock": 10,
+        "qty": 0
     },
     {
         "id": 8,
@@ -69,7 +76,8 @@
         "shortDesc": "spetstoppig och svårfångad",
         "price": 349,
         "image": "https://images.unsplash.com/photo-1563372949-0483fa40e5da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2534&q=80",
-        "quantity": 10
+        "stock": 10,
+        "qty": 0
     },
     {
         "id": 9,
@@ -78,6 +86,7 @@
         "shortDesc": "asfalt med patina",
         "price": 599,
         "image": "https://images.unsplash.com/photo-1508985099650-ccd79f645fd9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80",
-        "quantity": 10
+        "stock": 10,
+        "qty": 0
     }
 ]

@@ -26,6 +26,10 @@
     align-items: center;
 }
 
+.disabled {
+    color: maroon !important;
+}
+
 body{
     font-family: var(--ff-primary);
     font-weight: 400;
@@ -162,12 +166,13 @@ nav a {
     color: var(--clr-black);
     outline:none;
     background-color: var(--clr-white-green);
-    padding: 0.3rem;
+    padding: 0.3rem 0.7rem;
     border-radius: 99rem;
 }
 
 .search-container input::placeholder{
-    color: #8fa19f;
+    color: #a6b9b7;
+    font-size: 0.7rem;
 }
 /* PRODUCT CARD --------------- */
 

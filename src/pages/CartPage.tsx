@@ -31,7 +31,7 @@ function renderCart() {
             <span className="cart-desc">{product.shortDesc}</span>
             <span className="cart-price">{product.price}:-</span>
             <span className="cart-qty">Antal: </span>
-            <span className="cart-stock">I lager: {product.quantity}</span>
+            <span className="cart-stock">I lager: {product.stock}</span>
             <div className="cart-edt-qty">
                 <button className="icon-btn"><FaPlusCircle /></button>
                 <button className="icon-btn"><FaMinusCircle /></button>
