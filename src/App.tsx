@@ -6,6 +6,7 @@ import Header from "./components/Header"
 import Navbar from "./components/Navbar"
 import HomePage from "./pages/HomePage"
 import AboutPage from "./pages/AboutPage"
+import CartPage from "./pages/CartPage"
 import ProductItemPage from "./pages/ProductItemPage"
 
 
@@ -21,6 +22,7 @@ function App() {
 						<Route path="/" element={<HomePage />}/>
 						<Route path="/product/:id" element={<ProductItemPage />}/>
 						<Route path="/about" element={<AboutPage />}/>
+						<Route path="/cart" element={<CartPage />}/>
 					</Routes>
 				</main>
 				<footer>

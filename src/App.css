@@ -312,6 +312,105 @@ nav a {
     overflow: hidden;
 }
 
+/* CART -------------------_ */
+.cart-container {
+    background-color: var(--clr-white-green);
+    color: var(--clr-black);
+    padding: 1rem;
+}
+.cart-header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--clr-dark-green);
+}
+.cart-header h2 {
+    text-transform: uppercase;
+}
+.cart-header svg {
+    font-size: 2rem;
+}
+.cart-footer {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+.cart-total{
+    align-self: end;
+    margin-bottom: 1rem;
+}
+.cart-products {
+    list-style: none;
+    padding: 0 1rem;
+}
+.cart-products li {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+    'cart-img cart-title cart-price cart-qty cart-edt-qty cart-delete'
+    'cart-img cart-desc cart-price cart-stock cart-edt-qty cart-delete'
+    ;
+    justify-content:flex-start;
+    align-items: center;
+    margin-bottom: 0.3rem;
+}
+.cart-products svg {
+    font-size: 1.3rem;
+}
+
+.cart-thumb-container{
+    grid-area: cart-img;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5rem;
+    height: auto;
+    overflow: hidden;
+}
+
+.cart-thumb {
+    width: auto;
+    height: 5rem;
+}
+.cart-title {
+    margin-right:auto;
+    grid-area: cart-title;
+    text-transform: uppercase;
+    font-weight: 600;
+    align-self: flex-end;
+}
+.cart-desc {
+    align-self: flex-start;
+    grid-area: cart-desc;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--clr-light-grey);
+}
+.cart-price {
+    grid-area: cart-price;
+    font-weight: 700;
+}
+.cart-qty {
+    grid-area: cart-qty;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--clr-black);
+    align-self: flex-end;
+}
+.cart-stock {
+    align-self: flex-start;
+    grid-area: cart-stock;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--clr-light-grey);
+}
+.cart-edt-qty {grid-area: cart-edt-qty;}
+.cart-delete {grid-area: cart-delete;}
+
 footer{
     margin: 2rem 0;
     display: flex;
