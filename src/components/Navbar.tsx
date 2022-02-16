@@ -1,8 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FaUserCircle, FaShoppingCart } from "react-icons/fa"
+import Cart from './Cart'
 
 function Navbar() {
+    const [cartOpen, setCartOpen] = useState<boolean>(false)
+
+    function toggleCart() {
+        if(!cartOpen){
+            setCartOpen(true)
+            
+        } else {
+            setCartOpen(false)
+        }
+    }
+
   return (
     <nav>
         <div className="nav-section">
@@ -16,10 +28,9 @@ function Navbar() {
             <Link to="/my-account">
                 <FaUserCircle />
             </Link>
-            <Link to="/cart">
-                <FaShoppingCart />
-            </Link>
+            <button className="toggle-cart-btn" onClick={toggleCart}><FaShoppingCart /></button>
         </div>
+        {cartOpen && <Cart />}
     </nav>
   )
 }

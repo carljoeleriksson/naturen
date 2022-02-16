@@ -8,20 +8,32 @@ function Cart() {
     const [cartTotal, setCartTotal] = useState<number>(0)
 
     function getCurrentCart() {
-        let cartFromLS:any = localStorage.getItem('cart')
+        const cartFromLS:any = localStorage.getItem('cart')
 
-        if(cartFromLS.length > 0){
-            setCart(cartFromLS)
-            const cartSum: any = getCartTotal(cartFromLS)
-            setCartTotal(cartSum)
-
+        if(cartFromLS){
+            setCart(JSON.parse(cartFromLS))
+         /*    const cartSum: any = getCartTotal(cartFromLS)
+            setCartTotal(cartSum) */
         } else {
             setCart([])
         }
 
     }
 
-    function getCartTotal(cart: Array<any>) {
+function renderCart() {
+    return cart.map((product: any) => (
+        /* console.log('cartProduct', product); */
+        <li>
+            <div className="cart-small-thumb-container">
+                <img className="cart-small-thumb" src={product.image} alt={product.name} />
+            </div>
+            <span className="cart-small-title">{product.name}</span>
+            <span className="cart-small-price">{product.price}:-</span>
+        </li>
+    ))
+}
+
+ /*    function getCartTotal(cart: Array<any>) {
         let cartTotal: number = 0;
         let price: any = 0;
 
@@ -32,11 +44,7 @@ function Cart() {
                       cartTotal += parseFloat(price[i]);
                  }
              });
-             
-/*         cart.filter((item: any) => {
-            item.id
-        }) */
-    }
+    } */
 
     useEffect(() => {
         getCurrentCart()
@@ -44,16 +52,20 @@ function Cart() {
 
   return (<>
     
-    <div className="cart">
-        <div className="cart-header">
-            <FaShoppingCart className="cart-icon-small" />
+    <div className="cart-small-container">
+        <div className="cart-small-header">
+            <FaShoppingCart className="cart-small-icon" />
             <span className="badge hidden"></span>
-            <div className="cart-total">
-                <span>Total: <b>{cartTotal}</b>SEK</span>
-            </div>
         </div>
-        {/* {cart.length > 0 && renderCart} */}
-        <Link className="btn" to="/cart">Go to cart</Link>
+        <ul className="cart-small-products">
+            {cart.length > 0 ? renderCart() : <span>Din varukorg är tom!</span>}
+        </ul>
+        <div className="cart-small-footer">
+            <div className="cart-small-total">
+                <span>Totalt: <b>{cartTotal}</b> SEK</span>
+            </div>
+            <Link className="btn" to="/cart">Gå till kassan</Link>
+        </div>
 	</div>
   </>
       
