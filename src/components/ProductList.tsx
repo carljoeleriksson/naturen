@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
+import { FaSearch } from 'react-icons/fa'
 import ProductCard from './ProductCard'
 
 function ProductList() {
     //make a product interface!
     const [allProducts, setAllProducts]: Array<any> = useState([])
-    const [currentProducts, setCurrentProducts]: Array<any> = useState([])
+    
+    // set search query to empty string
+    const [query, setQuery] = useState<string>("");
     
     const fetchProductList = async () => {
         let productListFromLS:any = localStorage.getItem('productList')
@@ -19,33 +22,50 @@ function ProductList() {
             //Save default meetups in localStorage
             localStorage.setItem('productList', JSON.stringify(defaultProducts))
             setAllProducts(defaultProducts)
-            setCurrentProducts(defaultProducts)
-
+   
         } else {
             setAllProducts(JSON.parse(productListFromLS))
-            setCurrentProducts(JSON.parse(productListFromLS))
         }
         
     }
 
     function renderProductList() {
-        return currentProducts.map((product: any) => (
+        //filter products by filter-string (query)
+        let filteredProducts = allProducts.filter((product: any) => (product.name)
+                .toLowerCase()
+                .includes(query.toLowerCase())
+        );
+        
+        return filteredProducts.map((product: any) => (
             <ProductCard {...product} key={product.id}/>
         ))
     }
+
 
     useEffect(() => {
         try {
             fetchProductList()
         }
         catch (error) {
-            console.log(error)
+            console.log("No products were found:", error)
         }
     }, [])
 
   return (<>
+        <div className="search-container">
+            <FaSearch />
+            <input 
+                type="search" 
+                name="search-form" 
+                id="search-form" 
+                className="search-input"
+                placeholder="Search for something..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+            />
+        </div>
         <section className="product-list">
-            {currentProducts.length > 0 && renderProductList()}
+            {allProducts.length > 0 && renderProductList()}
         </section>
         
   </>

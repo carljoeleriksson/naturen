@@ -143,6 +143,32 @@ nav a {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.8rem;
+}
+.search-container svg {
+    color: var(--clr-dark-green);
+    font-size: 1.2rem;
+}
+.search-container input {
+    margin-left: 0.5rem;
+    border: none;
+    font-family: var(--ff-primary);
+    font-weight: 500;
+    color: var(--clr-black);
+    outline:none;
+    background-color: var(--clr-white-green);
+    padding: 0.3rem;
+    border-radius: 99rem;
+}
+
+.search-container input::placeholder{
+    color: #8fa19f;
+}
 /* PRODUCT CARD --------------- */
 
 .product-card {

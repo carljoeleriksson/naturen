@@ -17,7 +17,6 @@ function App() {
 				<Header />
 				<Navbar />
 				<main>
-					
 					<Routes>
 						<Route path="/" element={<HomePage />}/>
 						<Route path="/product/:id" element={<ProductItemPage />}/>
