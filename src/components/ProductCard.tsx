@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { FaCartPlus } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
@@ -23,48 +23,86 @@ function ProductCard(product:any) {
         return (itemInCart[0])
     }
 
+
+    function setToLocalStorage(newItem: any, prodArr:any, cartArr?:any) {
+        let newCartItem: any = {...newItem}
+
+        //Check if there is a cart-Array in params
+        if(typeof cartArr !== 'undefined'){
+            //remove the object from cart 
+            const filteredCart = cartArr.filter((item:any) => {
+                return item.id != product.id;
+            })
+            newCartItem.qty++
+            const newCart:any = [newCartItem, ...filteredCart]
+            localStorage.setItem('cart', JSON.stringify(newCart))
+
+        } else {
+            //if no cart-array, just set the item as the new cart.
+            newCartItem.qty++
+            const newCart:any = [newCartItem]
+            localStorage.setItem('cart', JSON.stringify(newCart))
+        }
+        
+                    
+        //remove the object from productLlist
+        const filteredProducts = prodArr.filter((item:any) => {
+            return item.id != product.id;
+        })
+        newItem.qty = 0
+        const newProductList:any = [newItem, ...filteredProducts]
+        localStorage.setItem('productList', JSON.stringify(newProductList))
+    }
+
+
     function addToCart() {  
         //Get current cart from localStorage
         const cartFromLS:any = localStorage.getItem('cart')
         let currentCart: any[] = JSON.parse(cartFromLS)
+        const productsFromLS:any = localStorage.getItem('productList')
+        let productList: any[] = JSON.parse(productsFromLS)
         
         
-      if(currentCart){
+        if(currentCart){
             //Find out if the item already in cart, and return it
             let itemInCart: any = {}
             itemInCart = alreadyInCart(currentCart)
-            
-          if(!itemInCart && product.stock > 0){
-              let newItem = {...product}
-              newItem.qty++
-              newItem.stock--
-              const newCart:any = [newItem, ...currentCart]
-              localStorage.setItem('cart', JSON.stringify(newCart))
-
-          } else if(itemInCart.qty > 0 && itemInCart.stock > 0) {
-              let newItem = {...itemInCart}
-              newItem.qty++
-              newItem.stock--
                 
-              //remove the object from cart 
-              const filteredCart = currentCart.filter(cartItem => {
-                  return cartItem.id != product.id;
-              })
+            if(!itemInCart && product.stock > 0){
+                let newItem = {...product}
+                newItem.stock--
 
-              const newCart:any = [newItem, ...filteredCart]
-              localStorage.setItem('cart', JSON.stringify(newCart))
-              
-          } else if(itemInCart.stock <= 0) {
-            console.log('Out of stock');
-            setIsOutOfStock(true)
-          }
-      } else {
-          let newItem = {...product}
-          newItem.qty = 1
-          newItem.stock--
-          localStorage.setItem('cart', JSON.stringify([newItem]))
-      }
+                setToLocalStorage(newItem, productList, currentCart)
+
+            } else if(itemInCart.qty > 0 && itemInCart.stock > 0) {
+                let newItem = {...itemInCart}
+                newItem.stock--
+                
+                setToLocalStorage(newItem, productList, currentCart)
+
+            } else if(itemInCart.stock <= 0) {
+                console.log('Out of stock');
+                setIsOutOfStock(true)
+            }
+
+            
+        } else {
+            let newItem = {...product}
+            newItem.stock--
+            
+            setToLocalStorage(newItem, productList)
+        }
     }
+
+    function checkIfOutOfStock() {
+        if(product.stock <= 0) {
+            setIsOutOfStock(true)
+        }
+    }
+
+    useEffect(() => {
+        checkIfOutOfStock()
+    }, [])
 
   return (<>
     <div className="product-card">
