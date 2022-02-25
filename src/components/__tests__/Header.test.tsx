@@ -12,15 +12,4 @@ describe('Header component tests', () => {
                 </BrowserRouter>
             )
     })
-    it('renders an image', () => {
-        render(
-            <BrowserRouter>
-                <Header/>
-            </BrowserRouter>
-        )
-
-        const imageElem = screen.getByRole('img')
-        expect(imageElem).toBeInTheDocument()
-    })
-    
 })

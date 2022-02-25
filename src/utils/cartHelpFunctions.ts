@@ -1,0 +1,147 @@
+export function getCurrentCart() {
+    const cartFromLS:any = localStorage.getItem('cart')
+
+    if(cartFromLS){
+        const returnObj = {
+            cart: JSON.parse(cartFromLS),
+            cartTotal: getCartTotal(JSON.parse(cartFromLS))
+        }
+        
+        return returnObj
+
+    } else {
+        return {
+            cart: [],
+            cartTotal: 0
+        }
+    }
+}
+
+export function getCartTotal(cartArr: any) {
+    if(cartArr.length !== 0) {
+        let prices: number[] = []
+        
+        //Put all cart prices in an array
+        cartArr.forEach((item: any) => {
+            prices = [...prices, (item.price * item.qty)];
+        });
+        
+        const cartSum = prices.reduce((prev, curr) => prev + curr)
+        console.log('cartSum: ', cartSum);
+
+        return cartSum
+    }
+}
+
+export function setToLocalStorage(prodItem: any, prodArr:any, cartArr?:any) {
+    let newCartItem: any = {...prodItem}
+    const isCartArr: boolean = typeof cartArr !== 'undefined' ? true : false;
+
+    //If cartArr exists
+    if(isCartArr && !(prodItem.qty === 0)){
+        newCartItem.qty++
+        newCartItem.stock--
+        //remove the object from cart 
+        const filteredCart = cartArr.filter((item:any) => {
+            return item.id !== prodItem.id;
+        })
+        const updatedCart:any = [newCartItem, ...filteredCart]
+        localStorage.setItem('cart', JSON.stringify(updatedCart))
+
+    //If there is no cart already, set the cart to [newCartItem]
+    } else if (isCartArr && (prodItem.qty === 0)) {
+        newCartItem.qty++
+        newCartItem.stock--
+        const updatedCart:any = [newCartItem, ...cartArr]
+        localStorage.setItem('cart', JSON.stringify(updatedCart))
+
+    } else if (!isCartArr && (prodItem.qty === 0)){
+        newCartItem.qty++
+        newCartItem.stock--
+        const updatedCart:any = [newCartItem]
+        localStorage.setItem('cart', JSON.stringify(updatedCart))
+    } 
+    
+    //UPDATE The productList stock status.
+    //remove the object from productLlist
+    const filteredProducts = prodArr.filter((item:any) => {
+        return item.id !== prodItem.id;
+    })
+    newCartItem.qty = 0
+    const newProductList:any = [newCartItem, ...filteredProducts]
+    localStorage.setItem('productList', JSON.stringify(newProductList))
+}
+
+
+
+export function deleteFromLocalStorage(prodItem: any, prodArr:any, cartArr?:any) {
+    let cartItem: any = {...prodItem}
+    const isCartArr: boolean = typeof cartArr !== 'undefined' ? true : false;
+    
+    if(isCartArr) {
+        cartItem.qty = 0
+        cartItem.stock++
+        const filteredCart = cartArr.filter((item:any) => {
+            return item.id !== prodItem.id;
+        })
+        localStorage.setItem('cart', JSON.stringify(filteredCart))
+    }
+     //UPDATE The productList stock status.
+    //remove the object from productLlist
+    const filteredProducts = prodArr.filter((item:any) => {
+        return item.id !== prodItem.id;
+    })
+    prodItem.qty = 0
+    const newProductList:any = [prodItem, ...filteredProducts]
+    localStorage.setItem('productList', JSON.stringify(newProductList))
+}
+
+export function addToCart(prodItem: any) {  
+    //Get current cart from localStorage
+    const cartFromLS:any = localStorage.getItem('cart')
+    let currentCart: any[] = JSON.parse(cartFromLS)
+    const productsFromLS:any = localStorage.getItem('productList')
+    let productList: any[] = JSON.parse(productsFromLS)
+
+    
+    if(currentCart){
+        //Find out if the item already in cart, and return it
+        let itemInCart: any = {}
+        itemInCart = alreadyInCart(prodItem, currentCart)
+            
+        if(!itemInCart && prodItem.stock > 0){
+            
+            let newItem = {...prodItem}
+
+
+            setToLocalStorage(newItem, productList, currentCart)
+
+        } else if(itemInCart.qty > 0 && itemInCart.stock > 0) {
+            
+            let newItem = {...itemInCart}
+
+            
+            setToLocalStorage(newItem, productList, currentCart)
+
+        } else if(itemInCart.stock <= 0) {
+            console.log('Out of stock');
+            return false
+        }
+
+        
+    } else {
+        
+        let newItem = {...prodItem}
+        
+        setToLocalStorage(newItem, productList)
+    }
+}
+
+export function alreadyInCart(prodItem: any, currentCart: any[]) {
+    //Check if product already in cart
+    let itemInCart = currentCart.filter((cartItem: any) => (cartItem.name)
+            .toLowerCase()
+            .includes(prodItem.name.toLowerCase())
+    )
+    return (itemInCart[0])
+}

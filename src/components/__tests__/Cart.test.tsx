@@ -1,17 +1,9 @@
 import { render, screen } from "@testing-library/react"
 import { BrowserRouter } from "react-router-dom"
-import ProductItemPage from "../ProductItemPage"
+import Cart from "../Cart"
 import { mockLocalStorage } from '../../__mocks__/localStorage';
-import userEvent from '@testing-library/user-event'
 
 const { getItemMock, setItemMock } = mockLocalStorage();
-
-jest.mock('react-router-dom', () => ({
-    ...jest.requireActual('react-router-dom'), // use actual for all non-hook parts
-    useParams: () => ({
-      id: 1
-    })
-  }));
 
 const mockProduct = {
     id: 1,
@@ -116,47 +108,26 @@ const mockProdArr = [
 }
 ]
 
-describe('Product-item page tests', () => {
+describe('Cart component (dropdown-cart) tests', () => {
     beforeEach(() => {
         getItemMock.mockReturnValue(JSON.stringify(mockProdArr))
         render(
             <BrowserRouter>
-                <ProductItemPage />    
+                <Cart />
             </BrowserRouter>
         )
     })
     it('renders without crashing', () => {})
-    
-    it('renders an image', () => {
-        const imgElem = screen.getByRole('img')
-        expect(imgElem).toBeInTheDocument()
+
+    it('renders a link tag', () => {
+        const linkElem = screen.getByRole('link')
+        expect(linkElem).toBeInTheDocument()
     })
-    it('renders a title', () => {
-        const titleElem = screen.getByRole('heading')
-        expect(titleElem).toBeInTheDocument()
-    })
-    it('renders a description', () => {
-        const descElem = screen.getByTestId('description')
-        expect(descElem).toBeInTheDocument()
-    })
-    it('renders a price', () => {
-        const priceElem = screen.getByTestId('price')
-        expect(priceElem).toBeInTheDocument()
-    })
-    it('renders a in-stock number ', () => {
-        const stockElem = screen.getByTestId('stock')
-        expect(stockElem).toBeInTheDocument()
-    })
-    it('renders an addToCart-button', () => {
-        const addBtn = screen.getByRole('button')
-        expect(addBtn).toBeInTheDocument()
-    })
-    it('calls setItem when add-to-cart button is clicked', () => {
-        const addBtn = screen.getByRole('button')
+
+    it('renders li elements (of cart items)', () => {
+        const cardElem = screen.getAllByRole('listitem')
         
-        userEvent.click(addBtn)
-        setTimeout(() => {
-            expect(setItemMock).toHaveBeenCalled()
-        }, 500)
+        expect(cardElem[0]).toBeInTheDocument()
     })
+
 })

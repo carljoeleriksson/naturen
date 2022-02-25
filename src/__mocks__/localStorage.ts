@@ -1,23 +1,22 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event'
-import { BrowserRouter } from 'react-router-dom';
-import ProductCard from '../ProductCard';
-import { mockLocalStorage } from '../../__mocks__/localStorage';
+export const mockLocalStorage = () => {
+    const setItemMock = jest.fn();
+    const getItemMock = jest.fn();
+  
+    beforeEach(() => {
+      Storage.prototype.setItem = setItemMock;
+      Storage.prototype.getItem = getItemMock;
+    });
+  
+    afterEach(() => {
+      setItemMock.mockRestore();
+      getItemMock.mockRestore();
+    //  console.log("mockLocalStorage restore")
+    });
+  
+    return { setItemMock, getItemMock };
+  };
 
-const { getItemMock, setItemMock } = mockLocalStorage();
-
-const mockProduct = {
-            id: 1,
-            name: "MockITestFil",
-            description: "En såpbubbla som varar för evigt (så länge den förvaras i -50 och inte vidrörs",
-            shortDesc: "Frusen såpbubbla",
-            price: 199,
-            image: "https://images.unsplash.com/photo-1484278786775-527ac0d0b608?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1961&q=80",
-            stock: 10,
-            qty: 0
-        }
-const mockProdArr = [
+/* const mockProdArr = [
     {
         "id": 1,
         "name": "MockIsbubbla",
@@ -110,50 +109,8 @@ const mockProdArr = [
     }
 ]
 
-describe('Product-card tests', () => {
 
-
-    beforeEach(() => {
-        getItemMock.mockReturnValue(JSON.stringify(mockProdArr))
-        render(
-            <BrowserRouter>
-                <ProductCard {...mockProduct} key={mockProduct.id} />    
-            </BrowserRouter>
-        )
-    })
-
-    it('renders without crashing', () => {})
-    
-    it('renders a product title', () => {
-        const hElem = screen.getByRole('heading')
-        expect(hElem).toBeInTheDocument()
-    })
-    
-    it('renders a short description', () => {
-        const shortDesc = screen.getByTestId('short-desc')
-        expect(shortDesc).toBeInTheDocument()
-    })
-    
-    it('renders a product price', () => {
-        const priceElem = screen.getByTestId('price')
-        expect(priceElem).toBeInTheDocument()
-    })
-    
-    it('renders an add-to-cart button', () => {
-        const addBtn = screen.getByRole('button')
-        expect(addBtn).toBeInTheDocument()
-    })
-
-    it('renders an image', () => {
-        const imgElem = screen.getByRole('img')
-        expect(imgElem).toBeInTheDocument()
-    })
-    it('calls setItem when add-to-cart button is clicked', () => {
-        const addBtn = screen.getByRole('button')
-        
-        userEvent.click(addBtn)
-        setTimeout(() => {
-            expect(setItemMock).toHaveBeenCalled()
-        }, 500)
-    })
-})
+export default {
+    getItem: jest.fn().mockResolvedValue(mockProdArr),
+    setItem: jest.fn()
+} */

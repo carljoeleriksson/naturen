@@ -1,9 +1,7 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
 
 function AboutPage() {
   return (<>
-        <Navbar />
         <img src="../assets/naturen-icon.png" alt="Naturen logo" />
         <h3>Naturen</h3>
         <div className='about-text'>

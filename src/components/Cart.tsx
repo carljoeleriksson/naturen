@@ -1,24 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { FaShoppingCart } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import { getCurrentCart } from '../utils/cartHelpFunctions'
 
 function Cart() {
 
     const [cart, setCart]: Array<any> = useState([])
     const [cartTotal, setCartTotal] = useState<number>(0)
-
-    function getCurrentCart() {
-        const cartFromLS:any = localStorage.getItem('cart')
-
-        if(cartFromLS){
-            setCart(JSON.parse(cartFromLS))
-         /*    const cartSum: any = getCartTotal(cartFromLS)
-            setCartTotal(cartSum) */
-        } else {
-            setCart([])
-        }
-
-    }
 
 function renderCart() {
     return cart.map((product: any) => (
@@ -33,21 +21,10 @@ function renderCart() {
     ))
 }
 
- /*    function getCartTotal(cart: Array<any>) {
-        let cartTotal: number = 0;
-        let price: any = 0;
-
-        cart.map((item: any) => {
-                price = item.price;
-                
-                for(var i = 0; i < price.length; i++){
-                      cartTotal += parseFloat(price[i]);
-                 }
-             });
-    } */
-
     useEffect(() => {
-        getCurrentCart()
+        const currentCartObj: any = getCurrentCart()
+        setCart(currentCartObj.cart)
+        setCartTotal(currentCartObj.cartTotal)
     }, [])
 
   return (<>
@@ -62,7 +39,7 @@ function renderCart() {
         </ul>
         <div className="cart-small-footer">
             <div className="cart-small-total">
-                <span>Totalt: <b>{cartTotal}</b> SEK</span>
+                <span>Totalt: <b>{cart.length > 0 ? cartTotal : 0}</b> SEK</span>
             </div>
             <Link className="btn" to="/cart">Gå till kassan</Link>
         </div>
