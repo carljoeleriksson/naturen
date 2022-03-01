@@ -5,14 +5,11 @@ import ProductList from "../ProductList"
 
 describe('Product-list tests', () => {
     it('renders without crashing', () => {
-        act(() => {
             render(
                 //It only renders without errors if the fetch from localStorage is successful.
                 <BrowserRouter>
                     <ProductList/>
                 </BrowserRouter>
             )
-        })
-        
     })
 })

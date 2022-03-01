@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage"
 import AboutPage from "./pages/AboutPage"
 import CartPage from "./pages/CartPage"
 import ProductItemPage from "./pages/ProductItemPage"
+import LoginPage from "./pages/LoginPage"
 
 
 function App() {
@@ -18,7 +19,8 @@ function App() {
 				<Navbar />
 				<main>
 					<Routes>
-						<Route path="/" element={<HomePage />}/>
+                        <Route path="/" element={<HomePage />}/>
+						<Route path="/login" element={<LoginPage />}/>
 						<Route path="/product/:id" element={<ProductItemPage />}/>
 						<Route path="/about" element={<AboutPage />}/>
 						<Route path="/cart" element={<CartPage />}/>
