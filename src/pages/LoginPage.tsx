@@ -22,7 +22,7 @@ function LoginPage() {
         e.preventDefault()
         const valObj: LoginReturn = await validateLogin(inputValues)
         setLoginRes(valObj)
-        /* console.log('valObj: ', valObj); */
+        console.log('valObj: ', valObj);
         
         if(valObj.success){
             console.log('VALID!');
@@ -41,7 +41,7 @@ function LoginPage() {
                 value={inputValues?.username}
                 onChange={(e) => handleFormInput(e)}
             />
-            {loginRes.userErr !== '' && <span className='login-fail-small'>*{loginRes.userErr}</span>}
+            {loginRes.userErr !== '' && <span data-testid='userErr' className='login-fail-small'>{loginRes.userErr}</span>}
             <input 
                 required
                 type="password" 

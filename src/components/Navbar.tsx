@@ -5,7 +5,7 @@ import Cart from './Cart'
 
 function Navbar() {
     const [cartOpen, setCartOpen] = useState<boolean>(false)
-
+    
     function toggleCart() {
         if(!cartOpen){
             setCartOpen(true)

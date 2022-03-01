@@ -442,6 +442,32 @@ nav a {
 .cart-edt-qty {grid-area: cart-edt-qty;}
 .cart-delete {grid-area: cart-delete;}
 
+/* -----------ACCOUNT PAGE------------*/
+.account-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 2rem 0;
+    
+}
+.account-label{
+    display: flex;
+    justify-self: end;
+    align-self: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--clr-dark-green);
+    margin-right: 0.7rem;
+}
+.account-info{
+    display: flex;
+    justify-self: start;
+    align-self: center;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--clr-black);
+}
+
+
 footer{
     margin: 2rem 0;
     display: flex;

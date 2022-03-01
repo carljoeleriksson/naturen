@@ -1,7 +1,7 @@
 import {InputValues, LoginReturn, UserArr} from '../interfaces/interfaces'
 
 
-async function getAllUsers() {
+export async function getAllUsers() {
     const importedUsers: any = await import("../users.json")
     let users: UserArr = [...importedUsers.default]
     
