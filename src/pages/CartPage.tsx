@@ -6,7 +6,6 @@ function CartPage() {
 
     const [cart, setCart] = useState<any[]>([])
     const [cartTotal, setCartTotal] = useState<number>(0)
-    const [isOutOfStock, setIsOutOfStock] = useState<Boolean>(false)
 
     
     function plusQty(product: any) {
@@ -19,14 +18,8 @@ function CartPage() {
         if(product.stock > 0){
             let newItem = {...product}
             
-            setToLocalStorage(newItem, productList, currentCart)
-            const currentCartObj: any = getCurrentCart()
-            setCart(currentCartObj.cart)
-            setCartTotal(currentCartObj.cartTotal)
-
-        } else if(product.qty > 0 && product.stock > 0) {
-            let newItem = {...product}
-
+            newItem.qty++
+            newItem.stock--
             setToLocalStorage(newItem, productList, currentCart)
             const currentCartObj: any = getCurrentCart()
             setCart(currentCartObj.cart)
@@ -34,7 +27,6 @@ function CartPage() {
 
         } else if(product.stock <= 0) {
             console.log('Out of stock');
-            setIsOutOfStock(true)
         }     
     }
     
@@ -46,15 +38,24 @@ function CartPage() {
         let productList: any[] = JSON.parse(productsFromLS)
         
         if(product.qty > 1){
-            let newItem = {...product}
+            console.log('cartpage if');
             
+            let newItem = {...product}
+            newItem.qty--
+            newItem.stock++
+
             setToLocalStorage(newItem, productList, currentCart)
             const currentCartObj: any = getCurrentCart()
             setCart(currentCartObj.cart)
             setCartTotal(currentCartObj.cartTotal)
 
         } else if(product.qty === 1) {
+            console.log('partpage else if');
+
             let newItem = {...product}
+            
+            newItem.stock=+ newItem.qty
+            newItem.qty--
 
             deleteFromLocalStorage(newItem, productList, currentCart)
             const currentCartObj: any = getCurrentCart()
@@ -94,7 +95,7 @@ function CartPage() {
                 <span className="cart-qty">Antal: {product.qty}</span>
                 <span className="cart-stock">I lager: {product.stock}</span>
                 <div className="cart-edt-qty">
-                    <button className={`icon-btn ${isOutOfStock ? 'disabled' : null}`} onClick={() => plusQty(product)}><FaPlusCircle /></button>
+                    <button className={`icon-btn`} onClick={() => plusQty(product)}><FaPlusCircle /></button>
                     <button className="icon-btn" onClick={() => minusQty(product)}><FaMinusCircle /></button>
                 </div>
                 <button className="cart-delete icon-btn" onClick={() => deleteFromCart(product)}><FaTrashAlt /></button>

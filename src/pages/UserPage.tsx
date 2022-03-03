@@ -44,12 +44,12 @@ function UserPage() {
     function renderUser() {
         return  (
             <div className='account-container'>
-                <span className="account-label">Användarnamn:</span>
-                <span className="account-info" data-testid="username">{currentUser?.username}</span>
                 <span className="account-label">Förnamn:</span>
                 <span className="account-info" data-testid="firstname">{currentUser?.firstName}</span>
                 <span className="account-label">Efternamn:</span>
                 <span className="account-info" data-testid="lastname">{currentUser?.lastName}</span>
+                <span className="account-label">Användarnamn:</span>
+                <span className="account-info" data-testid="username">{currentUser?.username}</span>
                 <span className="account-label">Mail:</span>
                 <span className="account-info" data-testid="mail">{currentUser?.email}</span>
                 <span className="account-label">Roll:</span>
@@ -78,7 +78,8 @@ function UserPage() {
         findUser()
     }, [])
     
-  return (<div>
+  return (<div className='userpage-container'>
+        <h2>Användaruppgifter</h2>
         {currentUser.id !== 0 && renderUser()}
         <button onClick={handleLogoutClick}>Logga ut</button>
         {currentUser.role === 'admin' && renderAdmin()}
@@ -87,11 +88,3 @@ function UserPage() {
 }
 
 export default UserPage
-/* 
-"id": 1,
-"username": "user",
-"password": "user",
-"role": "user",
-"firstName": "Steve",
-"lastName": "Larsson",
-"email": "steve.larsson@mail.com" */

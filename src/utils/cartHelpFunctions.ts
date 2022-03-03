@@ -34,13 +34,13 @@ export function getCartTotal(cartArr: any) {
 }
 
 export function setToLocalStorage(prodItem: any, prodArr:any, cartArr?:any) {
+    
     let newCartItem: any = {...prodItem}
     const isCartArr: boolean = typeof cartArr !== 'undefined' ? true : false;
-
-    //If cartArr exists
-    if(isCartArr && !(prodItem.qty === 0)){
-        newCartItem.qty++
-        newCartItem.stock--
+console.log('isCartArr: ', isCartArr);
+    console.log('prodItem.qty: ', prodItem.qty)
+    //If cartArr exists and qty not zero
+    if(isCartArr && !(prodItem.qty === 1)){
         //remove the object from cart 
         const filteredCart = cartArr.filter((item:any) => {
             return item.id !== prodItem.id;
@@ -49,15 +49,11 @@ export function setToLocalStorage(prodItem: any, prodArr:any, cartArr?:any) {
         localStorage.setItem('cart', JSON.stringify(updatedCart))
 
     //If there is no cart already, set the cart to [newCartItem]
-    } else if (isCartArr && (prodItem.qty === 0)) {
-        newCartItem.qty++
-        newCartItem.stock--
+    } else if (isCartArr && prodItem.qty === 1) {
         const updatedCart:any = [newCartItem, ...cartArr]
         localStorage.setItem('cart', JSON.stringify(updatedCart))
 
-    } else if (!isCartArr && (prodItem.qty === 0)){
-        newCartItem.qty++
-        newCartItem.stock--
+    } else if (!isCartArr && prodItem.qty === 1){
         const updatedCart:any = [newCartItem]
         localStorage.setItem('cart', JSON.stringify(updatedCart))
     } 
@@ -96,43 +92,51 @@ export function deleteFromLocalStorage(prodItem: any, prodArr:any, cartArr?:any)
     localStorage.setItem('productList', JSON.stringify(newProductList))
 }
 
-export function addToCart(prodItem: any) {  
+export function addToCart(prodItem: any) { 
+     
     //Get current cart from localStorage
     const cartFromLS:any = localStorage.getItem('cart')
     let currentCart: any[] = JSON.parse(cartFromLS)
     const productsFromLS:any = localStorage.getItem('productList')
     let productList: any[] = JSON.parse(productsFromLS)
 
-    
     if(currentCart){
         //Find out if the item already in cart, and return it
         let itemInCart: any = {}
         itemInCart = alreadyInCart(prodItem, currentCart)
+        
             
         if(!itemInCart && prodItem.stock > 0){
-            
             let newItem = {...prodItem}
-
+            newItem.qty++
+            newItem.stock--
 
             setToLocalStorage(newItem, productList, currentCart)
 
-        } else if(itemInCart.qty > 0 && itemInCart.stock > 0) {
-            
+        } else if(itemInCart.qty >= 0 && itemInCart.stock > 1) {
             let newItem = {...itemInCart}
-
+            newItem.qty++
+            newItem.stock--
             
             setToLocalStorage(newItem, productList, currentCart)
+
+        } else if(itemInCart.stock === 1) {
+            let newItem = {...itemInCart}
+            newItem.qty++
+            newItem.stock--
+            
+            setToLocalStorage(newItem, productList, currentCart)
+            return false
 
         } else if(itemInCart.stock <= 0) {
-            console.log('Out of stock');
             return false
         }
 
         
     } else {
-        
         let newItem = {...prodItem}
-        
+        newItem.qty++
+        newItem.stock--
         setToLocalStorage(newItem, productList)
     }
 }

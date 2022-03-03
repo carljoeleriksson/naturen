@@ -17,14 +17,18 @@ function ProductCard(product:any) {
 
     function handleClick() {
         const addedToCart = addToCart(product)
+        
         //returns false if it's out of stock.
         if(typeof addedToCart !== 'undefined') {
             setIsOutOfStock(true)
         }
     }
+
     function checkIfOutOfStock() {
-        if(product.stock <= 0) {
+        if(product.stock < 1) {
             setIsOutOfStock(true)
+        } else {
+            setIsOutOfStock(false)
         }
     }
 
@@ -41,7 +45,7 @@ function ProductCard(product:any) {
                 <h4 onClick={goToProduct}>{name}</h4>
                 <span className="short-desc" onClick={goToProduct} data-testid="short-desc">{shortDesc}</span>
                 <span className="price" onClick={goToProduct} data-testid="price">{price}:-</span>
-                <button onClick={handleClick} className={`add-to-cart-btn icon-btn ${isOutOfStock ? 'disabled' : null}`}><FaCartPlus /></button>
+                <button onClick={handleClick} className={`add-to-cart-btn icon-btn ${isOutOfStock ? 'disabled': ''}`}><FaCartPlus /></button>
           </div>
     </div>
   </>

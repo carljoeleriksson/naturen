@@ -52,12 +52,11 @@ function Admin() {
     }, [])
 
   return (<>
-            <button onClick={handleCreateFormClick}>{!showCreateForm ? 'Skapa ny produkt' : 'Avbryt'}</button>
-            {showCreateForm && <CreateProductForm />}
             <div className='cart-products'>
                 {productList.length > 0 ? renderProducts() : <h2>Hittade inga produkter</h2>}
             </div>
-  
+            {showCreateForm && <><h2>Skapa ny produkt</h2><CreateProductForm /></>}
+            <button onClick={handleCreateFormClick}>{!showCreateForm ? '+ Skapa ny produkt' : 'Avbryt'}</button>
         </>
   )
 }

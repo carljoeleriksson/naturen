@@ -65,6 +65,11 @@ button {
 h1, h2, h3, h4, h5 {
     font-family: var(--ff-headings);
 }
+h2 {
+    text-transform: uppercase;
+    font-weight: 900;
+    color: var(--clr-black);
+}
 h5{
     color: var(--clr-dark-green);
     text-transform: uppercase;
@@ -450,10 +455,15 @@ nav a {
 .cart-delete {grid-area: cart-delete;}
 
 /* -----------USER PAGE------------*/
+.userpage-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .account-container{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin: 2rem 0;
+    margin: 0 0 2rem 0;
     
 }
 .account-label{
