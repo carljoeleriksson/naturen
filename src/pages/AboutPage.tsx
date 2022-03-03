@@ -1,13 +1,14 @@
 import React from 'react'
 
 function AboutPage() {
-  return (<>
+  return (<div className='about-container'>
         <img src="./assets/img/naturen-icon.png" alt="Naturen logo" />
-        <h3>Naturen</h3>
+        <h3>Naturen&reg;</h3>
         <div className='about-text'>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad totam quis saepe praesentium qui est cum! Magnam, dolore atque? Incidunt laboriosam beatae hic obcaecati suscipit labore animi sed ullam aliquam quidem. Eos, ratione dolores placeat quod obcaecati voluptatibus excepturi rem.</p>
+            <p>Naturen är en webshop där du köper otroliga upplevelser, företeelser och objekt som bara naturen kan erbjuda.</p>
+            <p>Naturen har funnits sedan jordens födelse och kommer förhoppningsvis finnas ett tag till!</p>
         </div>
-  </>
+  </div>
 
   )
 }
