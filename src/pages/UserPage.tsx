@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { getAllUsers } from '../utils/loginHelper'
 import {UserArr, UserObj} from '../interfaces/interfaces'
+import Admin from '../components/Admin'
+import { useNavigate } from 'react-router-dom'
+
+
 
 function UserPage() {
+    const navigate = useNavigate()
+
     const emptyUser: UserObj = {
         id: 0,
         username: '',
@@ -54,11 +60,18 @@ function UserPage() {
     function renderAdmin(){
         return (
             <div className='admin-container' data-testid='admin-section'>
-                <h2>Admin</h2>
+                <h2>Admin-section</h2>
+                <Admin />
+                
                 {/* product-list som i cart men man tar bort från product list!*/}
                 {/* lägg till produkt funkniton*/}
             </div>
         )
+    }
+
+    function handleLogoutClick() {
+        sessionStorage.removeItem('auth')
+        navigate('/login')
     }
 
     useEffect(() => {
@@ -67,6 +80,7 @@ function UserPage() {
     
   return (<div>
         {currentUser.id !== 0 && renderUser()}
+        <button onClick={handleLogoutClick}>Logga ut</button>
         {currentUser.role === 'admin' && renderAdmin()}
   </div>
   )

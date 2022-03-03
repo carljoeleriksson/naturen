@@ -31,7 +31,8 @@ function LoginPage() {
     }
 
     return (<>
-        <form action="submit">
+        <form action="submit" className="login-form">
+            <h5>Logga in</h5>
         <input 
                 required
                 type="text" 
@@ -41,7 +42,7 @@ function LoginPage() {
                 value={inputValues?.username}
                 onChange={(e) => handleFormInput(e)}
             />
-            {loginRes.userErr !== '' && <span data-testid='userErr' className='login-fail-small'>{loginRes.userErr}</span>}
+            {loginRes.userErr !== '' && <span data-testid='userErr' className='login-fail-small'>* {loginRes.userErr}</span>}
             <input 
                 required
                 type="password" 
@@ -51,9 +52,9 @@ function LoginPage() {
                 value={inputValues?.password}
                 onChange={(e) => handleFormInput(e)}
             />
-            {loginRes.passErr !== '' && <span className='login-fail-small'>*{loginRes.passErr}</span>}
+            {loginRes.passErr !== '' && <span className='login-fail-small'>* {loginRes.passErr}</span>}
             <button onClick={handleSubmit} className="btn login-btn">Logga in</button>
-            {loginRes.loginErr !== '' && <span className='login-fail-msg'>Inloggning misslyckades</span>}
+            {loginRes.loginErr !== '' && <span className='login-fail'>Inloggning misslyckades</span>}
         </form>
             
     </>

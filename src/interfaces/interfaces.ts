@@ -22,3 +22,16 @@ export interface LoginReturn {
     userErr: string; 
     passErr: string;
 }
+
+export interface Product {
+    id: number,
+    name: string;
+    description: string;
+    shortDesc: string;
+    price: number;
+    image: string;
+    stock: number;
+    qty: number;
+}
+
+export interface ProductArr extends Array<Product>{}

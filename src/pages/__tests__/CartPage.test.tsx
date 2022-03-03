@@ -1,4 +1,4 @@
-import { render, screen, waitFor, waitForElementToBeRemoved } from "@testing-library/react"
+import { render, screen, waitFor } from "@testing-library/react"
 import { BrowserRouter } from "react-router-dom"
 import CartPage from "../CartPage"
 import { mockLocalStorage } from '../../__mocks__/localStorage';
