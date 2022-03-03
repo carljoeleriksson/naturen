@@ -197,6 +197,7 @@ nav a {
     overflow: hidden;
 }
 .card-info {
+    position:relative;
     display: grid;
     grid-template-columns: 1fr auto;
     grid-template-areas: 
@@ -580,6 +581,29 @@ nav a {
 
 .create-product-form button{
     grid-column: 1 / 4 ;
+}
+
+/*----LOGIN PROMPT-----*/
+.login-prompt{
+    position: absolute;
+    right: 0;
+    top: -2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--clr-light-green);
+    width: 11rem;
+    padding: 0.5rem;
+    height: auto;
+    font-size: 0.8rem;
+    border-radius: 0.5rem;
+    border: 0.2rem solid var(--clr-dark-green);
+}
+.login-prompt a {
+    color: var(--clr-dark-green);
+    font-weight: 900;
+    text-transform: uppercase;
 }
 
 

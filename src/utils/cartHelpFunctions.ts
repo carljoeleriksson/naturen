@@ -149,3 +149,12 @@ export function alreadyInCart(prodItem: any, currentCart: any[]) {
     )
     return (itemInCart[0])
 }
+
+export function checkIfLoggedIn(){
+    let userRole = sessionStorage.getItem('auth');
+    const loggedInObj = {
+        isLoggedIn: userRole === 'admin' || userRole === 'user' ? true : false,
+        role: userRole
+    }
+    return loggedInObj
+}
