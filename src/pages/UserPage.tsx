@@ -71,6 +71,8 @@ function UserPage() {
 
     function handleLogoutClick() {
         sessionStorage.removeItem('auth')
+        localStorage.removeItem('productList')
+        localStorage.removeItem('cart')
         navigate('/login')
     }
 

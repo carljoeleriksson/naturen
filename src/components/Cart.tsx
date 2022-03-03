@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { FaShoppingCart } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { getCurrentCart } from '../utils/cartHelpFunctions'
 
-function Cart() {
+function Cart(props:any) {
+    const ref: any = useRef(null);
+    const { onClickOutside } = props;
+
 
     const [cart, setCart]: Array<any> = useState([])
     const [cartTotal, setCartTotal] = useState<number>(0)
@@ -21,15 +24,33 @@ function renderCart() {
     ))
 }
 
+
     useEffect(() => {
         const currentCartObj: any = getCurrentCart()
         setCart(currentCartObj.cart)
         setCartTotal(currentCartObj.cartTotal)
     }, [])
 
-  return (<>
     
-    <div className="cart-small-container">
+
+    useEffect(() => {
+        const handleClickOutside = (event:any) => {
+            if (ref.current && !ref.current.contains(event.target)) {
+                onClickOutside && onClickOutside();
+            }
+        }
+        document.addEventListener('click', handleClickOutside, true);
+        return () => {
+            document.removeEventListener('click', handleClickOutside, true);
+        };
+    }, [ onClickOutside ]);
+
+    if(!props.show) {
+        return null
+    } 
+
+  return (<>
+    <div ref={ref} className="cart-small-container">
         <div className="cart-small-header">
             <FaShoppingCart className="cart-small-icon" />
             <span className="badge hidden"></span>
@@ -41,12 +62,10 @@ function renderCart() {
             <div className="cart-small-total">
                 <span>Totalt: <b>{cart.length > 0 ? cartTotal : 0}</b> SEK</span>
             </div>
-            <Link className="btn" to="/cart">Gå till kassan</Link>
+            <Link onClick={() => onClickOutside()} className="btn" to="/cart">Gå till kassan</Link>
         </div>
 	</div>
   </>
-      
-  
   )
 }
 

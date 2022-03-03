@@ -12,11 +12,9 @@ export default function IsLoggedIn() {
         let token = sessionStorage.getItem('auth');
 
         if (!token) {
-            console.log('No token');
             setLoggedIn(false);
 
         } else if(token === 'user' || token === 'admin'){
-            console.log('token (auth) is: ', token);
             setLoggedIn(true)
         }
     }

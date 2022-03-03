@@ -30,7 +30,7 @@ function Navbar() {
             </Link>
             <button className="toggle-cart-btn" onClick={toggleCart}><FaShoppingCart /></button>
         </div>
-        {cartOpen && <Cart />}
+        {cartOpen && <Cart show={cartOpen} onClickOutside={() => setCartOpen(false)}/>}
     </nav>
   )
 }

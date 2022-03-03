@@ -22,10 +22,8 @@ function LoginPage() {
         e.preventDefault()
         const valObj: LoginReturn = await validateLogin(inputValues)
         setLoginRes(valObj)
-        console.log('valObj: ', valObj);
         
         if(valObj.success){
-            console.log('VALID!');
             navigate('/');
         }
     }
