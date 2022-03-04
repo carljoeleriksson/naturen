@@ -30,13 +30,11 @@ function UserPage() {
 
     async function findUser() {
         let userRole = sessionStorage.getItem('auth');
-        console.log('userRole: ', userRole);
         
         const usersArr = await getAllUsers()
         const userObject:any = usersArr.find(user => 
             user.username === userRole
         )
-        console.log('userObject: ', usersArr);
         
         setCurrentUser(userObject)
     }

@@ -12,6 +12,8 @@ function Cart(props:any) {
     const [cartTotal, setCartTotal] = useState<number>(0)
 
 function renderCart() {
+    console.log('cart: ', cart);
+    
     return cart.map((product: any) => (
         /* console.log('cartProduct', product); */
         <li key={product.id}>
@@ -27,6 +29,7 @@ function renderCart() {
 
     useEffect(() => {
         const currentCartObj: any = getCurrentCart()
+        
         setCart(currentCartObj.cart)
         setCartTotal(currentCartObj.cartTotal)
     }, [])
@@ -62,7 +65,7 @@ function renderCart() {
             <div className="cart-small-total">
                 <span>Totalt: <b>{cart.length > 0 ? cartTotal : 0}</b> SEK</span>
             </div>
-            <Link onClick={() => onClickOutside()} className="btn" to="/cart">Gå till kassan</Link>
+            <Link onClick={() => onClickOutside()} className="btn" data-testid="gotocart" to="/cart">Gå till kassan</Link>
         </div>
 	</div>
   </>

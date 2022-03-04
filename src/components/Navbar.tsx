@@ -7,10 +7,10 @@ import { checkIfLoggedIn } from '../utils/cartHelpFunctions'
 function Navbar() {
     const [cartOpen, setCartOpen] = useState<boolean>(false)
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
+
     function toggleCart() {
         if(!cartOpen){
             setCartOpen(true)
-            
         } else {
             setCartOpen(false)
         }
@@ -20,7 +20,7 @@ function Navbar() {
         const loggedIn = checkIfLoggedIn()
         setIsLoggedIn(loggedIn.isLoggedIn)
     })
-
+    
   return (
     <nav>
         <div className="nav-section">
@@ -34,7 +34,7 @@ function Navbar() {
             {isLoggedIn ? <Link to="/my-account"><FaUserCircle /></Link> : <Link to="/login"><FaUserCircle /></Link>}
             <button className="toggle-cart-btn" onClick={toggleCart}><FaShoppingCart /></button>
         </div>
-        {cartOpen && <Cart show={cartOpen} onClickOutside={() => setCartOpen(false)}/>}
+        <Cart show={cartOpen} onClickOutside={() => setCartOpen(false)}/>
     </nav>
   )
 }

@@ -98,7 +98,7 @@ function CartPage() {
                     <button className={`icon-btn`} onClick={() => plusQty(product)}><FaPlusCircle /></button>
                     <button className="icon-btn" onClick={() => minusQty(product)}><FaMinusCircle /></button>
                 </div>
-                <button className="cart-delete icon-btn" onClick={() => deleteFromCart(product)}><FaTrashAlt /></button>
+                <button className="cart-delete icon-btn" data-testid='deleteproduct' onClick={() => deleteFromCart(product)}><FaTrashAlt /></button>
             </li>
         ))
     }

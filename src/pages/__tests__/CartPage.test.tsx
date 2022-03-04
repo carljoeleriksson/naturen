@@ -52,18 +52,32 @@ const mockCartArr = [
 
 describe('Cart-page tests', () => {
     beforeEach(() => {
-        render(
-            <BrowserRouter>
-                <CartPage/>
-            </BrowserRouter>
-        )
+        getItemMock.mockReturnValue(JSON.stringify(mockCartArr))
+            render(
+                <BrowserRouter>
+                    <CartPage/>
+                </BrowserRouter>
+            )
     })
     it('renders without crashing', () => {})
 
-    it('renders a list of the items in cart', async () => {
-        getItemMock.mockReturnValue(JSON.stringify(mockCartArr))
+    it('renders a list of the items in cart', () => {
+        waitFor(() => {
+            const listItems = screen.queryAllByRole('listitem')
+            expect(listItems[0]).toBeInTheDocument()
+        })
+    })
+    it('should be one item less on the page after i click delete product', () => {
+        waitFor(() => {
+            const listItemsPreClick = screen.queryAllByRole('listitem')
+            const numOfItemsPreClick = listItemsPreClick.length
 
-        const listItems = screen.queryAllByRole('listitem')
-        await waitFor(() => console.log('listItems', listItems))
+            const deleteBtn = screen.getByTestId('deleteproduct')
+            userEvent.click(deleteBtn)
+
+            const listItemsPostClick = screen.queryAllByRole('listitem')
+            const numOfItemsPostClick = listItemsPostClick.length
+            expect(numOfItemsPostClick).toBe(numOfItemsPreClick - 1)
+        })  
     })
 })

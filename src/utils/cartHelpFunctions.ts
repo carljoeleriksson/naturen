@@ -27,7 +27,6 @@ export function getCartTotal(cartArr: any) {
         });
         
         const cartSum = prices.reduce((prev, curr) => prev + curr)
-        console.log('cartSum: ', cartSum);
 
         return cartSum
     }

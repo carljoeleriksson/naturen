@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react"
+import { render, screen, waitFor} from "@testing-library/react"
 import { BrowserRouter } from "react-router-dom"
 import Cart from "../Cart"
 import { mockLocalStorage } from '../../__mocks__/localStorage';
@@ -117,17 +117,22 @@ describe('Cart component (dropdown-cart) tests', () => {
             </BrowserRouter>
         )
     })
+
     it('renders without crashing', () => {})
 
-    it('renders a link tag', () => {
-        const linkElem = screen.getByRole('link')
-        expect(linkElem).toBeInTheDocument()
+    it('renders a link tag', () => {   
+        waitFor(() => {
+            const linkElem = screen.getByTestId('gotocart')
+            expect(linkElem).toBeInTheDocument()
+        })        
     })
 
     it('renders li elements (of cart items)', () => {
-        const cardElem = screen.getAllByRole('listitem')
-        
-        expect(cardElem[0]).toBeInTheDocument()
+        waitFor(() => {
+            const cardElem = screen.queryAllByRole('listitem')
+            expect(cardElem[0]).toBeInTheDocument()
+
+        })
     })
 
 })

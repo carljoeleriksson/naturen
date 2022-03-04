@@ -29,35 +29,50 @@ const mockUserArr = [
 describe('UserPage tests', () => {
     getItemMock.mockReturnValueOnce('admin')
     beforeEach(() => {
-        act(() => {
+        waitFor(() => {
             render(
                 <BrowserRouter>
                     <UserPage/>
                 </BrowserRouter>    
             )
+
         })
             
     })
     it('renders without crashing', () => {})
-    it('renders a username element', async () => {
-        const userElem = await screen.findByTestId(/username/i)
-        expect(userElem).toBeInTheDocument()
+    it('renders a username element', () => {
+        waitFor(() => {
+            const userElem = screen.getByTestId(/username/i)
+            expect(userElem).toBeInTheDocument()
+
+        })
     })
-    it('renders a firstName element', async () => {
-        const nameElem = await screen.findByTestId(/firstname/i)
-        expect(nameElem).toBeInTheDocument()
+    it('renders a firstName element', () => {
+        waitFor(() => {
+            const nameElem = screen.getByTestId(/firstname/i)
+            expect(nameElem).toBeInTheDocument()
+
+        })
     })
-    it('renders a lastName element', async () => {
-        const nameElem = await screen.findByTestId(/lastname/i)
-        expect(nameElem).toBeInTheDocument()
+    it('renders a lastName element', () => {
+        waitFor(() => {
+            const nameElem = screen.getByTestId(/lastname/i)
+            expect(nameElem).toBeInTheDocument()
+
+        })
     })
-    it('renders an email element', async () => {
-        const mailElem = await screen.findByTestId(/mail/i)
-        expect(mailElem).toBeInTheDocument()
+    it('renders an email element', () => {
+        waitFor(() => {
+            const mailElem = screen.getByTestId(/mail/i)
+            expect(mailElem).toBeInTheDocument()
+        })
     })
-    it('renders a role element', async () => {
-        const roleElem = await screen.findByTestId(/role/i)
-        expect(roleElem).toBeInTheDocument()
+    it('renders a role element', () => {
+        waitFor(() => {
+            const roleElem = screen.getByTestId(/role/i)
+            expect(roleElem).toBeInTheDocument()
+
+        })
     })
 
     it('does not render admin section if role is user', () => {
