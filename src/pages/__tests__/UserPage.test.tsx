@@ -26,9 +26,10 @@ const mockUserArr = [
     }
 ]
 
+
 describe('UserPage tests', () => {
-    getItemMock.mockReturnValueOnce('admin')
     beforeEach(() => {
+        getItemMock.mockReturnValueOnce('user')
         waitFor(() => {
             render(
                 <BrowserRouter>
@@ -39,6 +40,10 @@ describe('UserPage tests', () => {
         })
             
     })
+    afterEach(() => {
+        getItemMock.mockClear()
+    })
+
     it('renders without crashing', () => {})
     it('renders a username element', () => {
         waitFor(() => {

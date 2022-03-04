@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { getProductsFromLS, deleteProduct } from '../utils/adminFunctions'
-import { FaTrashAlt } from 'react-icons/fa'
+import { FaTrashAlt, FaEdit } from 'react-icons/fa'
 import { Product, ProductArr } from '../interfaces/interfaces'
 import CreateProductForm from '../components/CreateProductForm'
 
 function Admin() {
     const [productList, setProductList] = useState<ProductArr>([])
     const [showCreateForm, setShowCreateForm] = useState(false)
+    const [productToEdit, setProductToEdit] = useState<Product>()
 
     function renderProducts() {
-        console.log('Render');
-        
         return productList.map((product: Product) => (
             <li key={product.id}>
                 <div className="cart-thumb-container">
@@ -21,6 +20,7 @@ function Admin() {
                 <span className="cart-price">{product.price}:-</span>
                 <span className="cart-stock">I lager: {product.stock}</span>
                 <button className="cart-delete icon-btn" onClick={() => handleDeleteClick(product)}><FaTrashAlt /></button>
+                <button className="cart-edit icon-btn" onClick={() => handleEditClick(product)}><FaEdit /></button>
             </li>
         ))
     }
@@ -28,6 +28,11 @@ function Admin() {
     function handleDeleteClick(product: Product) {
         const newProductList: any = deleteProduct(product)
         setProductList(newProductList)
+    }
+
+    function handleEditClick(product: Product) {
+        setProductToEdit(product)
+        setShowCreateForm(true)
     }
 
     function handleCreateFormClick() {
@@ -38,10 +43,6 @@ function Admin() {
         } else {
             setShowCreateForm(false)
         }
-    }
-    function handleAddProductClick() {
-        
-        /* const newProductList: any = addNewProduct(newProduct) */
     }
 
 
@@ -55,7 +56,7 @@ function Admin() {
             <div className='cart-products'>
                 {productList.length > 0 ? renderProducts() : <h2>Hittade inga produkter</h2>}
             </div>
-            {showCreateForm && <><h2>Skapa ny produkt</h2><CreateProductForm /></>}
+            {showCreateForm && <><h2>Skapa ny produkt</h2><CreateProductForm product={productToEdit}/></>}
             <button onClick={handleCreateFormClick}>{!showCreateForm ? '+ Skapa ny produkt' : 'Avbryt'}</button>
         </>
   )

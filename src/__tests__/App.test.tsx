@@ -6,12 +6,9 @@ import { BrowserRouter } from 'react-router-dom'
 
 describe('App tests', () => {
   it('renders without crashing', () => {
-        act(() => {
             render(
                     <App />
             );
-        })
-    
   })
   
 })

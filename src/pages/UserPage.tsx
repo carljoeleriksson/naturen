@@ -3,21 +3,13 @@ import { getAllUsers } from '../utils/loginHelper'
 import {UserArr, UserObj} from '../interfaces/interfaces'
 import Admin from '../components/Admin'
 import { useNavigate } from 'react-router-dom'
+import IsLoggedIn from '../components/IsLoggedIn'
 
 
 
 function UserPage() {
     const navigate = useNavigate()
 
-    const emptyUser: UserObj = {
-        id: 0,
-        username: '',
-        password: '',
-        role: '',
-        firstName: '',
-        lastName: '',
-        email: ''
-    }
     const [currentUser, setCurrentUser] = useState<UserObj>({
         id: 0,
         username: '',
@@ -29,14 +21,20 @@ function UserPage() {
     })
 
     async function findUser() {
-        let userRole = sessionStorage.getItem('auth');
+        try {
+            let userRole = sessionStorage.getItem('auth');
         
-        const usersArr = await getAllUsers()
-        const userObject:any = usersArr.find(user => 
-            user.username === userRole
-        )
+            const usersArr = await getAllUsers()
+            const userObject:any = usersArr.find(user => 
+                user.username === userRole
+            )
+            
+            setCurrentUser(userObject)    
+        } catch (error) {
+            console.log(error);
+            
+        }
         
-        setCurrentUser(userObject)
     }
 
     function renderUser() {
@@ -60,9 +58,6 @@ function UserPage() {
             <div className='admin-container' data-testid='admin-section'>
                 <h2>Admin-section</h2>
                 <Admin />
-                
-                {/* product-list som i cart men man tar bort från product list!*/}
-                {/* lägg till produkt funkniton*/}
             </div>
         )
     }
@@ -78,12 +73,15 @@ function UserPage() {
         findUser()
     }, [])
     
-  return (<div className='userpage-container'>
-        <h2>Användaruppgifter</h2>
-        {currentUser.id !== 0 && renderUser()}
-        <button onClick={handleLogoutClick}>Logga ut</button>
-        {currentUser.role === 'admin' && renderAdmin()}
-  </div>
+  return (<>
+        <IsLoggedIn/>
+        <div className='userpage-container'>
+            <h2>Användaruppgifter</h2>
+            {(currentUser.id !== 0) && renderUser()}
+            <button onClick={handleLogoutClick}>Logga ut</button>
+            {currentUser.role === 'admin' && renderAdmin()}
+        </div>
+  </>
   )
 }
 

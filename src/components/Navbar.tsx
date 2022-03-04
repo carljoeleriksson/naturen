@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { FaUserCircle, FaShoppingCart } from "react-icons/fa"
 import Cart from './Cart'
 import { checkIfLoggedIn } from '../utils/cartHelpFunctions'
+import IsLoggedIn from './IsLoggedIn'
 
 function Navbar() {
     const [cartOpen, setCartOpen] = useState<boolean>(false)
@@ -21,7 +22,8 @@ function Navbar() {
         setIsLoggedIn(loggedIn.isLoggedIn)
     })
     
-  return (
+  return (<>
+    <IsLoggedIn/>
     <nav>
         <div className="nav-section">
             <Link className="logo-link" to="/">
@@ -36,6 +38,7 @@ function Navbar() {
         </div>
         <Cart show={cartOpen} onClickOutside={() => setCartOpen(false)}/>
     </nav>
+  </>
   )
 }
 

@@ -2,7 +2,7 @@ import { Product, ProductArr } from '../interfaces/interfaces'
 
 export function getProductsFromLS() {
     const productListStr: string | null = localStorage.getItem('productList')
-
+    
     if (!productListStr) {
         throw new Error("Can't find productList in Local Storage")
     }
@@ -12,8 +12,36 @@ export function getProductsFromLS() {
 }
 
 export function addProductToLS(newProduct: Product) {
+    console.log('newProduct', newProduct);
+    
     const currentProductList: any = getProductsFromLS()
-    let newProductList = [...currentProductList, newProduct]
+    
+    let isUpdate = false
+    const updatedProductList = currentProductList.map((item: any) => {
+        if(item.id === newProduct.id){
+            item.name = newProduct.name
+            item.description = newProduct.description
+            item.shortDesc = newProduct.shortDesc
+            item.price = newProduct.price
+            item.image = newProduct.image
+            item.stock = newProduct.stock
+            
+            isUpdate = true
+            
+            return item
+        } 
+        return item        
+    })
+
+    console.log('updatedProductList: ', updatedProductList);
+    
+    let newProductList = []
+    if(!isUpdate) {
+        newProductList = [...updatedProductList, newProduct]
+    } else {
+        newProductList = [...updatedProductList]
+    }
+    
     console.log('newProductList: ', newProductList);
 
     localStorage.setItem('productList', JSON.stringify(newProductList))
