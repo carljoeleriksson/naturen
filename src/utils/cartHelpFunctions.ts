@@ -36,10 +36,11 @@ export function setToLocalStorage(prodItem: any, prodArr:any, cartArr?:any) {
     
     let newCartItem: any = {...prodItem}
     const isCartArr: boolean = typeof cartArr !== 'undefined' ? true : false;
-console.log('isCartArr: ', isCartArr);
+    console.log('isCartArr: ', isCartArr);
     console.log('prodItem.qty: ', prodItem.qty)
-    //If cartArr exists and qty not zero
-    if(isCartArr && !(prodItem.qty === 1)){
+    
+    //If cartArr exists and more than 1 product already exists in cart
+    if(isCartArr && prodItem.qty > 1){
         //remove the object from cart 
         const filteredCart = cartArr.filter((item:any) => {
             return item.id !== prodItem.id;
@@ -47,12 +48,14 @@ console.log('isCartArr: ', isCartArr);
         const updatedCart:any = [newCartItem, ...filteredCart]
         localStorage.setItem('cart', JSON.stringify(updatedCart))
 
-    //If there is no cart already, set the cart to [newCartItem]
+    //If cartArr exists and its only one 
     } else if (isCartArr && prodItem.qty === 1) {
         const updatedCart:any = [newCartItem, ...cartArr]
         localStorage.setItem('cart', JSON.stringify(updatedCart))
 
-    } else if (!isCartArr && prodItem.qty === 1){
+    } else if (!isCartArr){
+        console.log('!isCartArr');
+        
         const updatedCart:any = [newCartItem]
         localStorage.setItem('cart', JSON.stringify(updatedCart))
     } 
@@ -74,8 +77,8 @@ export function deleteFromLocalStorage(prodItem: any, prodArr:any, cartArr?:any)
     const isCartArr: boolean = typeof cartArr !== 'undefined' ? true : false;
     
     if(isCartArr) {
+        cartItem.stock+= cartItem.qty
         cartItem.qty = 0
-        cartItem.stock++
         const filteredCart = cartArr.filter((item:any) => {
             return item.id !== prodItem.id;
         })
