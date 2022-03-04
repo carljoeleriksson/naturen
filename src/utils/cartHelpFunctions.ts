@@ -50,7 +50,10 @@ export function setToLocalStorage(prodItem: any, prodArr:any, cartArr?:any) {
 
     //If cartArr exists and its only one 
     } else if (isCartArr && prodItem.qty === 1) {
-        const updatedCart:any = [newCartItem, ...cartArr]
+        const filteredCart = cartArr.filter((item:any) => {
+            return item.id !== prodItem.id;
+        })
+        const updatedCart:any = [newCartItem, ...filteredCart]
         localStorage.setItem('cart', JSON.stringify(updatedCart))
 
     } else if (!isCartArr){

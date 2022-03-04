@@ -12,8 +12,6 @@ function Cart(props:any) {
     const [cartTotal, setCartTotal] = useState<number>(0)
 
 function renderCart() {
-    console.log('cart: ', cart);
-    
     return cart.map((product: any) => (
         /* console.log('cartProduct', product); */
         <li key={product.id}>
@@ -26,17 +24,21 @@ function renderCart() {
     ))
 }
 
-
+/* 
     useEffect(() => {
         const currentCartObj: any = getCurrentCart()
         
         setCart(currentCartObj.cart)
         setCartTotal(currentCartObj.cartTotal)
     }, [])
-
+ */
     
 
     useEffect(() => {
+        const currentCartObj: any = getCurrentCart()
+        
+        setCart(currentCartObj.cart)
+        setCartTotal(currentCartObj.cartTotal)
         const handleClickOutside = (event:any) => {
             if (ref.current && !ref.current.contains(event.target)) {
                 onClickOutside && onClickOutside();
