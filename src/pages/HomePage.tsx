@@ -6,7 +6,6 @@ import IsLoggedIn from '../components/IsLoggedIn'
 
 function HomePage() {
   return (<>
-    {/* <IsLoggedIn /> */}
     <ProductList />
   </>
   )

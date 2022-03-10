@@ -98,6 +98,16 @@ a {
     border: none;
     color: var(--clr-dark-green);
 }
+.prompt{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--clr-light-green);
+    border-radius: 0.5rem;
+    border: 0.2rem solid var(--clr-dark-green);
+}
   
 header {
     width: 100vw;
@@ -390,14 +400,28 @@ nav button {
     font-size: 2rem;
 }
 .cart-footer {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
+    display: grid;
+    position: relative;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: space-between;
     align-items: center;
 }
+.cart-footer button{
+    grid-column: 2;
+    justify-self: center;
+}
 .cart-total{
-    align-self: end;
+    justify-self: end;
     margin-bottom: 1rem;
+}
+.cart-footer .prompt{
+    right: 38%;
+    top: -5rem;
+    width: 14rem;
+    padding: 1rem;
+    height: auto;
+    font-size: 1rem;
+    box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
 }
 .cart-products {
     list-style: none;
@@ -493,7 +517,7 @@ nav button {
     display: flex;
     justify-self: start;
     align-self: center;
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: 600;
     color: var(--clr-black);
 }
@@ -597,23 +621,17 @@ nav button {
 }
 
 /*----LOGIN PROMPT-----*/
-.login-prompt{
-    position: absolute;
-    right: 0;
-    top: -2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--clr-light-green);
+
+
+.card-info .prompt {
     width: 11rem;
     padding: 0.5rem;
     height: auto;
     font-size: 0.8rem;
-    border-radius: 0.5rem;
-    border: 0.2rem solid var(--clr-dark-green);
+    right: 0;
+    top: -2rem;
 }
-.login-prompt a {
+.prompt a {
     color: var(--clr-dark-green);
     font-weight: 900;
     text-transform: uppercase;

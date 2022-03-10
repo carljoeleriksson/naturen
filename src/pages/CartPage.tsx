@@ -6,6 +6,7 @@ function CartPage() {
 
     const [cart, setCart] = useState<any[]>([])
     const [cartTotal, setCartTotal] = useState<number>(0)
+    const [dummyPrompt, setDummyPrompt] = useState<boolean>(false)
 
     
     function plusQty(product: any) {
@@ -121,6 +122,17 @@ function CartPage() {
             {cart.length > 0 ? renderCart() : <span>Din varukorg är tom!</span>}
         </ul>
         <div className="cart-footer">
+            <button onClick={() => {
+                            setDummyPrompt(true)
+                            setTimeout(() => {
+                                setDummyPrompt(false)
+                            }, 2000)
+            }}>Köp</button>
+                {dummyPrompt && 
+                    <div className="prompt">
+                        <span>Köpet genomfört😉</span>
+                    </div>
+                }
             <div className="cart-total">
                 <span>Totalt: <b>{(cart.length > 0) && cartTotal}</b> SEK</span>
             </div>

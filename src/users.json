@@ -6,7 +6,10 @@
         "role": "user",
         "firstName": "Steve",
         "lastName": "Larsson",
-        "email": "steve.larsson@mail.com"
+        "email": "steve.larsson@mail.com",
+        "street": "Dunderbergavägen 21",
+        "zip": "456 00",
+        "city": "Dunderberga"
     },
     {
         "id": 2,
@@ -15,6 +18,9 @@
         "role": "admin",
         "firstName": "Gloria",
         "lastName": "Olsson",
-        "email": "gloria.olsson@mail.com"
+        "email": "gloria.olsson@mail.com",
+        "street": "Småbergagatan 12",
+        "zip": "456 00",
+        "city": "Småberga"
     }
 ]

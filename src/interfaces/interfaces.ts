@@ -7,6 +7,9 @@ export interface UserObj {
     firstName: string;
     lastName: string;
     email: string;
+    street: string;
+    zip: string;
+    city: string;
 }
 
 export interface UserArr extends Array<UserObj>{}

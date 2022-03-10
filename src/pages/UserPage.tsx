@@ -17,7 +17,10 @@ function UserPage() {
         role: '',
         firstName: '',
         lastName: '',
-        email: ''
+        email: '',
+        street: '',
+        zip: '',
+        city: ''
     })
 
     async function findUser() {
@@ -50,6 +53,11 @@ function UserPage() {
                 <span className="account-info" data-testid="mail">{currentUser?.email}</span>
                 <span className="account-label">Roll:</span>
                 <span className="account-info" data-testid="role">{currentUser?.role}</span>
+                <span className="account-label">Adress:</span>
+                <span className="account-info" data-testid="address">
+                    {currentUser?.street}<br/>
+                    {currentUser?.zip}, {currentUser?.city}
+                </span>
             </div>
             )
     }

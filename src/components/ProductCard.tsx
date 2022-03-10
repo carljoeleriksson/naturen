@@ -29,7 +29,7 @@ function ProductCard(product:any) {
             setShowLoginPrompt(true)
             setTimeout(() => {
                 setShowLoginPrompt(false)
-            }, 3000)
+            }, 2000)
         }
     }
 
@@ -56,7 +56,7 @@ function ProductCard(product:any) {
                 <span className="price" onClick={goToProduct} data-testid="price">{price}:-</span>
                 <button onClick={handleClick} className={`add-to-cart-btn icon-btn ${isOutOfStock ? 'disabled': ''}`}><FaCartPlus /></button>
                 {showLoginPrompt && 
-                    <div className="login-prompt">
+                    <div className="prompt">
                         <span><Link to="/login">Logga in</Link> för att handla!</span>
                     </div>
                 }
