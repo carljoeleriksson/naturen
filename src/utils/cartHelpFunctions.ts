@@ -1,3 +1,4 @@
+
 export function getCurrentCart() {
     const cartFromLS:any = localStorage.getItem('cart')
 
@@ -79,9 +80,10 @@ export function deleteFromLocalStorage(prodItem: any, prodArr:any, cartArr?:any)
     let cartItem: any = {...prodItem}
     const isCartArr: boolean = typeof cartArr !== 'undefined' ? true : false;
     
-    if(isCartArr) {
-        cartItem.stock+= cartItem.qty
+    if(isCartArr) {        
+        prodItem.stock += cartItem.qty
         cartItem.qty = 0
+
         const filteredCart = cartArr.filter((item:any) => {
             return item.id !== prodItem.id;
         })

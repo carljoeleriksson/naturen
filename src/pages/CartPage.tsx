@@ -55,7 +55,7 @@ function CartPage() {
 
             let newItem = {...product}
             
-            newItem.stock=+ newItem.qty
+            newItem.stock += newItem.qty
             newItem.qty--
 
             deleteFromLocalStorage(newItem, productList, currentCart)
