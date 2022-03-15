@@ -12,8 +12,6 @@ export function getProductsFromLS() {
 }
 
 export function addProductToLS(newProduct: Product) {
-    console.log('newProduct', newProduct);
-    
     const currentProductList: any = getProductsFromLS()
     
     let isUpdate = false
@@ -32,8 +30,6 @@ export function addProductToLS(newProduct: Product) {
         } 
         return item        
     })
-
-    console.log('updatedProductList: ', updatedProductList);
     
     let newProductList = []
     if(!isUpdate) {
@@ -41,14 +37,11 @@ export function addProductToLS(newProduct: Product) {
     } else {
         newProductList = [...updatedProductList]
     }
-    
-    console.log('newProductList: ', newProductList);
 
     localStorage.setItem('productList', JSON.stringify(newProductList))
 }
 
 export function deleteProduct(product: Product) {
-    console.log('Delete product');
     const productsFromLS:any = localStorage.getItem('productList')
     let productList: any[] = JSON.parse(productsFromLS)
         

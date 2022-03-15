@@ -36,8 +36,8 @@ function ProductItemPage() {
             )
             return singleProduct
         } else {
-            console.log('No products in allProducts yet');
-            
+            console.log('No products in productList');
+    
         }
         
     }

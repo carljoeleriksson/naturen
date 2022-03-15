@@ -47,7 +47,7 @@ function ProductList() {
             fetchProductList()
         }
         catch (error) {
-            console.log("No products were found:", error)
+            console.log("No products were found")
         }
     }, [])
 

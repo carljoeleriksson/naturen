@@ -39,8 +39,6 @@ function CartPage() {
         let productList: any[] = JSON.parse(productsFromLS)
         
         if(product.qty > 1){
-            console.log('cartpage if');
-            
             let newItem = {...product}
             newItem.qty--
             newItem.stock++
@@ -51,8 +49,6 @@ function CartPage() {
             setCartTotal(currentCartObj.cartTotal)
 
         } else if(product.qty === 1) {
-            console.log('partpage else if');
-
             let newItem = {...product}
             
             newItem.stock += newItem.qty
@@ -72,8 +68,6 @@ function CartPage() {
         let currentCart: any[] = JSON.parse(cartFromLS)
         const productsFromLS:any = localStorage.getItem('productList')
         let productList: any[] = JSON.parse(productsFromLS)
-
-        console.log('deleteFromCart');
             
         let newItem = {...product}
 

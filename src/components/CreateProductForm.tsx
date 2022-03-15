@@ -9,9 +9,9 @@ function CreateProductForm(props: any) {
     
     function handleSubmit(e: React.SyntheticEvent) {
         e.preventDefault()
-        console.log('Submit');
         
         const productList: any = getProductsFromLS()
+        
         //Get the highest Id in product-list
         const arrOfIds = productList.map((product: Product) => product.id)
         let highestId = Math.max(...arrOfIds) ?? 0;
@@ -54,19 +54,7 @@ return (<>
                 <input id="new-image" name="image" type="text" defaultValue={isProductToEdit ? productToEdit.image : ''} required/>  
                 <button>{!productToEdit ? 'Lägg till produkt' : 'Utför ändring'}</button> 
             </form>
-
-</>
-  )
+        </>)
 }
-
-
-/* "id": 1,
-"name": "Isbubbla",
-"description": "En såpbubbla som varar för evigt (så länge den förvaras i -50 och inte vidrörs",
-"shortDesc": "Frusen såpbubbla",
-"price": 199,
-"image": "https://images.unsplash.com/photo-1484278786775-527ac0d0b608?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1961&q=80",
-"stock": 10, */
-
 
 export default CreateProductForm

@@ -37,11 +37,11 @@ function Admin() {
 
     function handleCreateFormClick() {
         if(!showCreateForm){
-            console.log('Show!');
-            
             setShowCreateForm(true)
+
         } else {
             setShowCreateForm(false)
+            
         }
     }
 

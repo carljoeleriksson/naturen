@@ -34,11 +34,8 @@ export function getCartTotal(cartArr: any) {
 }
 
 export function setToLocalStorage(prodItem: any, prodArr:any, cartArr?:any) {
-    
     let newCartItem: any = {...prodItem}
     const isCartArr: boolean = typeof cartArr !== 'undefined' ? true : false;
-    console.log('isCartArr: ', isCartArr);
-    console.log('prodItem.qty: ', prodItem.qty)
     
     //If cartArr exists and more than 1 product already exists in cart
     if(isCartArr && prodItem.qty > 1){
@@ -58,8 +55,6 @@ export function setToLocalStorage(prodItem: any, prodArr:any, cartArr?:any) {
         localStorage.setItem('cart', JSON.stringify(updatedCart))
 
     } else if (!isCartArr){
-        console.log('!isCartArr');
-        
         const updatedCart:any = [newCartItem]
         localStorage.setItem('cart', JSON.stringify(updatedCart))
     } 
