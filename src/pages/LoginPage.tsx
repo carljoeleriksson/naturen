@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import {UserArr, InputValues, UserObj, LoginReturn} from '../interfaces/interfaces'
+import { InputValues, LoginReturn} from '../interfaces/interfaces'
 import { useNavigate } from 'react-router-dom';
-import { forEachTrailingCommentRange } from 'typescript';
 import { validateLogin } from '../utils/loginHelper'
 
 function LoginPage() {

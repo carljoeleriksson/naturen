@@ -8,39 +8,11 @@ function ProductItemPage() {
     const { id } = useParams()
     const Id = Number(id)
 
-    const [allProducts, setAllProducts]: Array<any> = useState([])
     const [product, setProduct]: Array<any> = useState([])
     const [isOutOfStock, setIsOutOfStock] = useState<Boolean>(false)
 
-    function getProductsFromLS() {
-        const productListStr: string | null = localStorage.getItem('productList')
 
-        if (!productListStr) {
-            throw new Error("Can't find productList in Local Storage")
-        }
 
-        const productList: Array<any> = JSON.parse(productListStr)
-        setAllProducts(productList)
-        
-        const singleProduct: Array<any> = getSingleProduct(productList)
-        setProduct(singleProduct[0])        
-    }
-
-    function getSingleProduct(productList: Array<any>) {
-        if(productList) {
-            let singleProduct: any = null
-        
-            singleProduct = productList.filter((prod: any) => {
-                    return prod.id === Id
-                }
-            )
-            return singleProduct
-        } else {
-            console.log('No products in productList');
-    
-        }
-        
-    }
     function handleClick() {
         const addedToCart = addToCart(product)
         //returns false if it's out of stock.
@@ -50,6 +22,37 @@ function ProductItemPage() {
     }
 
     useEffect(() => {
+        function getProductsFromLS() {
+            const productListStr: string | null = localStorage.getItem('productList')
+    
+            if (!productListStr) {
+                throw new Error("Can't find productList in Local Storage")
+            }
+    
+            const productList: Array<any> = JSON.parse(productListStr)
+            
+            const singleProduct: Array<any> = getSingleProduct(productList)
+            setProduct(singleProduct[0])        
+        }
+
+
+        function getSingleProduct(productList: Array<any>) {
+            if(productList) {
+                let singleProduct: any = null
+            
+                singleProduct = productList.filter((prod: any) => {
+                        return prod.id === Id
+                    }
+                )
+                return singleProduct
+            } else {
+                console.log('No products in productList');
+        
+            }
+            
+        }
+
+
         try {
             getProductsFromLS()
         } catch (error) {

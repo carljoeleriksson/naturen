@@ -1,6 +1,6 @@
 import React from 'react'
 import {getProductsFromLS, addProductToLS} from '../utils/adminFunctions'
-import {Product, ProductArr} from '../interfaces/interfaces'
+import { Product } from '../interfaces/interfaces'
 
 function CreateProductForm(props: any) {
     const isProductToEdit = props.product ? true : false;

@@ -19,7 +19,7 @@ function Navbar() {
     useEffect(() => {
         const loggedIn = checkIfLoggedIn()
         setIsLoggedIn(loggedIn.isLoggedIn)
-    })
+    }, [])
     
   return (<>
     <nav>

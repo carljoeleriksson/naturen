@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function IsLoggedIn() {
 
+    
     const navigate = useNavigate()
 
     const [loggedIn, setLoggedIn] = useState<boolean>(true);
@@ -26,7 +27,7 @@ export default function IsLoggedIn() {
         if (!loggedIn){
            return navigate("/login");
         }
-     },[loggedIn]);
+     }, [loggedIn]);
 
     return (<></>)
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getAllUsers } from '../utils/loginHelper'
-import {UserArr, UserObj} from '../interfaces/interfaces'
+import { UserObj } from '../interfaces/interfaces'
 import Admin from '../components/Admin'
 import { useNavigate } from 'react-router-dom'
 import IsLoggedIn from '../components/IsLoggedIn'

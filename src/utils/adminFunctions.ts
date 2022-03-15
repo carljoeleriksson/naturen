@@ -45,20 +45,15 @@ export function deleteProduct(product: Product) {
     const productsFromLS:any = localStorage.getItem('productList')
     let productList: any[] = JSON.parse(productsFromLS)
         
-    let prodItem: any = {...product}
     const isProductList: boolean = typeof productList !== 'undefined' ? true : false;
     
     if(isProductList) {
         let newProductList = productList.filter(item => {
-            return item.id != product.id
+            return item.id !== product.id
           })
         localStorage.setItem('productList', JSON.stringify(newProductList))
         return newProductList
     } else {
         return productList
     }
-}
-
-function deleteFromLocalStorage(product: Product, productList: ProductArr) {
-    
 }
