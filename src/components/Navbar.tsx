@@ -31,7 +31,7 @@ function Navbar() {
             <Link to="/about">Om Naturen&reg;</Link>
         </div>
         <div className="nav-section">
-            {isLoggedIn ? <Link to="/my-account"><FaUserCircle /></Link> : <Link to="/login"><FaUserCircle /></Link>}
+            <Link to="/my-account"><FaUserCircle /></Link>
             <button className="toggle-cart-btn" onClick={toggleCart}><FaShoppingCart /></button>
         </div>
         <Cart show={cartOpen} onClickOutside={() => setCartOpen(false)}/>

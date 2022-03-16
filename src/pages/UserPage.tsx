@@ -32,12 +32,11 @@ function UserPage() {
                 user.username === userRole
             )
             
-            setCurrentUser(userObject)    
+            return userObject
         } catch (error) {
             console.log(error);
             
-        }
-        
+        } 
     }
 
     function renderUser() {
@@ -78,7 +77,15 @@ function UserPage() {
     }
 
     useEffect(() => {
-        findUser()
+        let isMounted: boolean = true
+        
+        findUser().then(user => {
+            if(isMounted){
+                setCurrentUser(user)
+            }
+        })
+        return () => { isMounted = false }
+
     }, [])
     
   return (<>
