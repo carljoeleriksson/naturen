@@ -1,7 +1,8 @@
 # Naturen Webshop
 *Published at:* 
 https://naturen-app.herokuapp.com/
-### Inlogg:
+## Info:
+**INLOGGING**
 **User:**
 - username: user
 - password: user
@@ -10,6 +11,7 @@ https://naturen-app.herokuapp.com/
 - username: admin
 - username: admin
 
+**Se också docker.png (i root) där det framgår att den är publicerad som en Docker-image**
 
 
 ## User Stories:
