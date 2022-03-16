@@ -30,14 +30,11 @@ const mockUserArr = [
 describe('UserPage tests', () => {
     beforeEach(() => {
         getItemMock.mockReturnValueOnce('user')
-        waitFor(() => {
             render(
                 <BrowserRouter>
                     <UserPage/>
                 </BrowserRouter>    
             )
-
-        })
             
     })
     afterEach(() => {
@@ -81,7 +78,10 @@ describe('UserPage tests', () => {
     })
 
     it('does not render admin section if role is user', () => {
-        const adminSect = screen.queryByTestId(/admin-section/i)
-        expect(adminSect).not.toBeInTheDocument()
+        waitFor(() => {
+            const adminSect = screen.queryByTestId(/admin-section/i)
+            expect(adminSect).not.toBeInTheDocument()
+
+        })
     })
 })
