@@ -30,11 +30,14 @@ const mockUserArr = [
 describe('UserPage tests', () => {
     beforeEach(() => {
         getItemMock.mockReturnValueOnce('user')
+        waitFor(() => {
             render(
                 <BrowserRouter>
                     <UserPage/>
                 </BrowserRouter>    
             )
+
+        })
             
     })
     afterEach(() => {
