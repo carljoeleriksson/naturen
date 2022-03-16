@@ -1,15 +1,14 @@
 # Naturen Webshop
-Published at:
+*Published at:* 
 https://naturen-app.herokuapp.com/
-## Info:
 ### Inlogg:
-User
-username: user
-password: user
+**User:**
+- username: user
+- password: user
 
-Admin
-username: admin
-username: admin
+**Admin:**
+- username: admin
+- username: admin
 
 
 
